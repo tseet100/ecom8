@@ -3,6 +3,16 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const signIn = (e) => {
+    e.preventDefault();
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="login">
       <Link to="/">
@@ -15,13 +25,29 @@ function Login() {
         <h1>Sign In</h1>
         <form>
           <h5>Email</h5>
-          <input type="text" />
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <h5>Password</h5>
-          <input type="password" />
-          <button className="login__signInButton">Sign In</button>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="login__signInButton"
+            onClick={signIn}
+          >
+            Sign In
+          </button>
         </form>
         <p>By signing in, you are agreeing to our terms & conditions.</p>
-        <button className="login__registerButton">Create an account</button>
+        <button onClick={register} className="login__registerButton">
+          Create an account
+        </button>
       </div>
     </div>
   );
