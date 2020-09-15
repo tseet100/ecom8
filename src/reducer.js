@@ -9,6 +9,11 @@ export const getCartTotal = (cart) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
+      return {
+        ...state,
+        cart: [...state.cart, action.item],
+      };
+    case 'INCREMENT_QTY':
       const foundIdx = state.cart.findIndex(
         (cartItem) => cartItem.id === action.id
       );
@@ -17,10 +22,6 @@ const reducer = (state, action) => {
         incrementQty[foundIdx].qty = incrementQty[foundIdx].qty + 1;
         return {...state, cart: incrementQty};
       }
-      return {
-        ...state,
-        cart: [...state.cart, action.item],
-      };
     case 'REMOVE_FROM_CART':
       const idx = state.cart.findIndex((cartItem) => cartItem.id === action.id);
       let newCart = [...state.cart];
