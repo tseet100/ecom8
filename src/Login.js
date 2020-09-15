@@ -12,7 +12,9 @@ function Login() {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((auth) => history.push('/'))
+      .then((auth) => {
+        if (auth) history.push('/');
+      })
       .catch((error) => alert(error.message));
   };
 
@@ -30,6 +32,7 @@ function Login() {
       <Link to="/">
         <img
           className="login__logo"
+          alt=""
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRNLTOUGcsMuAryJfdk6V60A-PFmv-8AY2vDQ&usqp=CAU"
         />
       </Link>

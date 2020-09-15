@@ -1,5 +1,6 @@
 export const initialState = {
   cart: [],
+  user: null,
 };
 
 export const getCartTotal = (cart) =>
@@ -8,6 +9,14 @@ export const getCartTotal = (cart) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
+      const foundIdx = state.cart.findIndex(
+        (cartItem) => cartItem.id === action.id
+      );
+      if (foundIdx > -1) {
+        let incrementQty = [...state.cart];
+        incrementQty[foundIdx].qty = incrementQty[foundIdx].qty + 1;
+        return {...state, cart: incrementQty};
+      }
       return {
         ...state,
         cart: [...state.cart, action.item],
@@ -22,10 +31,14 @@ const reducer = (state, action) => {
           `Can't remove product (id ${action.id}) as it's not in the cart!`
         );
       }
-
       return {
         ...state,
         cart: newCart,
+      };
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

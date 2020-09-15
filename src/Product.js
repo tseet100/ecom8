@@ -2,8 +2,8 @@ import React from 'react';
 import './Product.css';
 import {useStateValue} from './StateProvider';
 
-function Product({title, image, price, rating, id}) {
-  const [state, dispatch] = useStateValue();
+function Product({title, image, price, rating, id, qty}) {
+  const [{}, dispatch] = useStateValue();
 
   const addToCart = () => {
     dispatch({
@@ -14,6 +14,7 @@ function Product({title, image, price, rating, id}) {
         image,
         price,
         rating,
+        qty,
       },
     });
   };

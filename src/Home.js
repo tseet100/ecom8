@@ -15,6 +15,7 @@ function Home() {
       <div className="home__container">
         <img
           className="home__image"
+          alt=""
           src="https://dujye7n3e5wjl.cloudfront.net/photographs/1080-tall/time-100-influential-photos-andreas-gursky-99-cent-90.jpg"
         />
         <div className="home__row">
@@ -24,6 +25,7 @@ function Home() {
             price={9.99}
             image={imgBleach}
             rating={4}
+            qty={1}
           />
           <Product
             id="2"
@@ -31,6 +33,7 @@ function Home() {
             price={14.99}
             image={imgBounty}
             rating={3}
+            qty={1}
           />
         </div>
         <div className="home__row">
@@ -40,6 +43,7 @@ function Home() {
             price={6.99}
             image={imgNike}
             rating={5}
+            qty={1}
           />
           <Product
             id="3"
@@ -47,6 +51,7 @@ function Home() {
             price={6.99}
             image={imgNike}
             rating={5}
+            qty={1}
           />
           <Product
             id="3"
@@ -54,6 +59,7 @@ function Home() {
             price={6.99}
             image={imgNike}
             rating={5}
+            qty={1}
           />
         </div>
         <div className="home__row">
@@ -63,6 +69,7 @@ function Home() {
             price={6.99}
             image={imgNike}
             rating={5}
+            qty={1}
           />
         </div>
       </div>
