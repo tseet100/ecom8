@@ -29,8 +29,8 @@ function Payment() {
       setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
-    console.log('THE SECRET IS pls work>>>>>>>', clientSecret);
   }, [cart]);
+  console.log('THE SECRET IS pls work>>>>>>>', clientSecret);
 
   const handleChange = (e) => {
     setDisabled(e.empty);
