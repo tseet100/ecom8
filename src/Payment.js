@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Payment.css';
 import {useStateValue} from './StateProvider';
 import CheckoutProduct from './CheckoutProduct';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import {getCartTotal} from './reducer';
@@ -10,24 +10,26 @@ import axios from 'axios';
 
 function Payment() {
   const [{cart, user}, dispatch] = useStateValue();
+  const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
 
-  const [succeeded, setSucceeded] = useState();
-  const [processing, setProcessing] = useState();
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState('');
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
   useEffect(() => {
     const getClientSecret = async () => {
-      const res = await axios({
+      const response = await axios({
         method: 'post',
         url: `/payments/create?total=${getCartTotal(cart) * 100}`,
       });
-      setClientSecret(res.data.clientSecret);
+      setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
+    console.log('THE SECRET IS pls work>>>>>>>', clientSecret);
   }, [cart]);
 
   const handleChange = (e) => {
